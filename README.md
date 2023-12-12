@@ -14,12 +14,17 @@ Features:->
                 . Java: Core programming language.
                 . Object-Oriented Design: Emphasizes modularity and code reusability.
                 . DATABASE MYSQL.
+                . JDBC
+                . SQL
   
 - How to Use:
   
 > Clone the repository.
+
 > Compile the Java files using a Java compiler.
-> Run the main program to start the bank system.
+
+> Run the main program to start the bank system
+
 > Follow the console prompts to navigate through various banking operations.
 
  
