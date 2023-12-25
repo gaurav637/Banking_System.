@@ -1,5 +1,6 @@
 package BankSystem;
 
+
 import java.io.IOException;
 import java.sql.Connection;
 import java.sql.DriverManager;
@@ -21,19 +22,21 @@ public class Bank_Management {
                 Connection conn = DriverManager.getConnection(url,user,password);
                 Scanner sc = new Scanner(System.in);
                 User user = new User(conn,sc);
+                Accounts ac = new Accounts(conn,sc);
                 System.out.println("BANK MANAGEMENT SYSTEM");
                 System.out.println("1.register");
                 System.out.println("2. login");
                 System.out.println("3. exit");
                 System.out.println("choice any option -> ");
                 int n = sc.nextInt();
+                String ans;
                 switch(n){
                     case 1:{
                         user.Register();
                         break;
                     }
                     case 2:{
-                        String ans = user.login();
+                        ans = user.login();
                         if(ans!=null){
                             System.out.println("Account is login-> ");
                         }
