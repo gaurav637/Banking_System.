@@ -19,7 +19,7 @@ public class User {
         this.sc = sc;
         //System.out.println(" user connection ");
     }
-    public  void Register()throws IOException{
+    public void Register()throws IOException{
         InputStreamReader r = new InputStreamReader(System.in);
         BufferedReader br = new BufferedReader(r);
         System.out.print("Enter full name -> ");
