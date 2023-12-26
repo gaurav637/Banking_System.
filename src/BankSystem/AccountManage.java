@@ -15,7 +15,7 @@ public class AccountManage {
         this.sc = sc;
     }
 
-    public void credit_money(int accounts_number) throws SQLException{
+    public void credit_money(int account_number) throws SQLException{
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
         sc.nextLine();
         System.out.println("Enter amount-> ");
@@ -26,10 +26,10 @@ public class AccountManage {
 
         try{
             conn.setAutoCommit(false);
-            if(accounts_number!=0){
-                String sql = "SELECT * FROM accounts WHERE accounts_number = ? AND security_pin = ?";
+            if(account_number!=0){
+                String sql = "SELECT * FROM accounts WHERE account_number = ? AND security_pin = ?";
                 PreparedStatement prt = conn.prepareStatement(sql);
-                prt.setInt(1,accounts_number);
+                prt.setInt(1,account_number);
                 prt.setString(2,pin);
                 ResultSet set = prt.executeQuery();
 
@@ -37,7 +37,7 @@ public class AccountManage {
                     String sq = "UPDATE accounts SET balance =  balance + ? WHERE account_number = ?";
                     PreparedStatement pr = conn.prepareStatement(sq);
                     pr.setInt(1,amount);
-                    pr.setInt(2,accounts_number);
+                    pr.setInt(2,account_number);
                     int ef = pr.executeUpdate();
                     if(ef>0){
                         System.out.println("Rs "+ amount+" credited successfully..");
@@ -60,7 +60,7 @@ public class AccountManage {
         }
         conn.setAutoCommit(true);
     }
-    public void debit_money(int accounts_number) throws SQLException{
+    public void debit_money(int account_number) throws SQLException{
         //BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
         sc.nextLine();
         System.out.println("Enter amount-> ");
@@ -71,10 +71,10 @@ public class AccountManage {
 
         try{
             conn.setAutoCommit(false);
-            if(accounts_number!=0){
-                String sql = "SELECT * FROM accounts WHERE accounts_number = ? AND security_pin = ?";
+            if(account_number!=0){
+                String sql = "SELECT * FROM accounts WHERE account_number = ? AND security_pin = ?";
                 PreparedStatement prt = conn.prepareStatement(sql);
-                prt.setInt(1,accounts_number);
+                prt.setInt(1,account_number);
                 prt.setString(2,pin);
                 ResultSet set = prt.executeQuery();
 
@@ -82,7 +82,7 @@ public class AccountManage {
                     String sq = "UPDATE accounts SET balance =  balance - ? WHERE account_number = ?";
                     PreparedStatement pr = conn.prepareStatement(sq);
                     pr.setInt(1,amount);
-                    pr.setInt(2,accounts_number);
+                    pr.setInt(2,account_number);
                     int ef = pr.executeUpdate();
                     if(ef>0){
                         System.out.println("Rs "+ amount+" debited successfully..");
@@ -109,14 +109,14 @@ public class AccountManage {
         conn.setAutoCommit(true);
     }
 
-    public void getBalance(int accounts_number){
+    public void getBalance(int account_number){
         System.out.println("Enter pin-> ");
         sc.nextLine();
         String pin = sc.nextLine();
         try{
-            String sql = "SELECT balance accounts WHERE accounts_number = ? AND security_pin = ?";
+            String sql = "SELECT balance FROM accounts WHERE account_number = ? AND security_pin = ?";
             PreparedStatement prt = conn.prepareStatement(sql);
-            prt.setInt(1,accounts_number);
+            prt.setInt(1,account_number);
             prt.setString(2,pin);
             ResultSet set = prt.executeQuery();
             if(set.next()){
@@ -133,11 +133,11 @@ public class AccountManage {
     }
 
     public void transfer_money(int sender_account_number) throws SQLException{
-        sc.nextInt();
+        //sc.nextInt();
         System.out.println("Enter Receiver Account Number -> ");
         int receiver_account_number = sc.nextInt();
         System.out.println("Enter amount-> ");
-        sc.nextInt();
+        //sc.nextInt();
         int amount = sc.nextInt();
         System.out.println("security pin -> ");
         sc.nextLine();
@@ -150,12 +150,11 @@ public class AccountManage {
                 prt.setInt(1,sender_account_number);
                 prt.setString(2,pin);
                 ResultSet set = prt.executeQuery();
-
                 if(set.next()){
                     int current_balance = set.getInt("balance");
                     if(amount<=current_balance){
                         String debit = "UPDATE accounts SET balance = balance - ? WHERE account_number = ?";
-                        String credit = "UPDATE account SET balance = balance + ? WHERE account_number = ?";
+                        String credit = "UPDATE accounts SET balance = balance + ? WHERE account_number = ?";
                         PreparedStatement prt1 = conn.prepareStatement(debit);
                         PreparedStatement prt2 = conn.prepareStatement(credit);
                         prt1.setInt(1,amount);
