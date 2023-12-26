@@ -11,6 +11,8 @@ public class Bank_Management {
     private static final String user = "root";
     private static final String password = "91491026";
     public static void main(String args[])throws ClassNotFoundException {
+        System.out.println();
+        System.out.println();
         String email;
         int account_number;
         try{
@@ -27,9 +29,11 @@ public class Bank_Management {
                 Accounts ac = new Accounts(conn,sc);
                 AccountManage am = new AccountManage(conn,sc);
                 System.out.println("BANK MANAGEMENT SYSTEM");
+                System.out.println();
                 System.out.println("1.register");
                 System.out.println("2. login");
                 System.out.println("3. exit");
+                System.out.println();
                 System.out.println("choice any option -> ");
                 int n = sc.nextInt();
                 switch(n){
@@ -60,20 +64,21 @@ public class Bank_Management {
                             int choice = 0;
                             while(choice!=5){
                                 System.out.println();
-                                System.out.println("credit money");
-                                System.out.println("debit money");
-                                System.out.println("transferred money ");
-                                System.out.println("Log Out");
+                                System.out.println(" 1.credit money");
+                                System.out.println(" 2.debit money");
+                                System.out.println(" 3.transferred money ");
+                                System.out.println(" 4.get balance");
+                                System.out.println(" 5.exit");
                                 System.out.println();
                                 System.out.println("Enter your choise -> ");
                                 choice = sc.nextInt();
                                 switch(choice){
                                     case 1:{
-                                        am.debit_money(account_number);
+                                        am.credit_money(account_number);
                                         break;
                                     }
                                     case 2:{
-                                        am.credit_money(account_number);
+                                        am.debit_money(account_number);
                                         break;
                                     }
                                     case 3:{
@@ -81,7 +86,7 @@ public class Bank_Management {
                                         break;
                                     }
                                     case 4:{
-                                        am.transfer_money(account_number);
+                                        am.getBalance(account_number);
                                         break;
                                     }
                                     case 5:{

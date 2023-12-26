@@ -74,7 +74,7 @@ public class User {
             String l_email = br.readLine();
             System.out.println("Enter your password");
             String l_pass = br.readLine();
-            String sql = "SELECT email,password FROM user WHERE email = ?,password = ?";
+            String sql = "SELECT email,password FROM user WHERE email = ? AND password = ?";
             PreparedStatement prt = conn.prepareStatement(sql);
             prt.setString(1,l_email);
             prt.setString(2,l_pass);
