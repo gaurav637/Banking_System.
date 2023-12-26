@@ -33,6 +33,7 @@ public class Bank_Management {
                 System.out.println("1.register");
                 System.out.println("2. login");
                 System.out.println("3. exit");
+                System.out.println();
                 System.out.println("choice any option -> ");
                 int n = sc.nextInt();
                 switch(n){
