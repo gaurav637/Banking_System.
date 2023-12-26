@@ -11,6 +11,8 @@ public class Bank_Management {
     private static final String user = "root";
     private static final String password = "91491026";
     public static void main(String args[])throws ClassNotFoundException {
+        System.out.println();
+        System.out.println();
         String email;
         int account_number;
         try{
@@ -27,6 +29,7 @@ public class Bank_Management {
                 Accounts ac = new Accounts(conn,sc);
                 AccountManage am = new AccountManage(conn,sc);
                 System.out.println("BANK MANAGEMENT SYSTEM");
+                System.out.println();
                 System.out.println("1.register");
                 System.out.println("2. login");
                 System.out.println("3. exit");
